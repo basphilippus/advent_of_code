@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "advent-of-code"
+version = "0.1.0"
+description = "Advent of Code"
+authors = ["Bas Philippus <bas.philippus@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11,<4.0"
+poetry = {version = "^1.2.2", optional = true}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.1"
+nox-poetry = "^1.0.1"
+mypy = "^0.971"
+safety = "^2.2.0"
+pytest-cov = "^3.0.0"
+blue = "^0.9.1"
+flake8 = "<4.0.1"  # because of blue https://github.com/grantjenks/blue/issues/78
+flake8-bugbear = "^22.9.23"
+importlib-metadata = "*"
+exceptiongroup = "*"
+
+[tool.poetry.extras]
+myextra = ["importlib-metadata", "virtualenv"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.blue]
+line-length = 120
+target-version = ['py310']
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.isort]
+profile = "black"
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
+
+[flake8]
+max-line-length = 120
+docstring-convention = "google"
+exclude = ".git,__pycache__,.venv,.nox,.tox,build,dist"
+select = "B,B9,BLK,C,E,F,I,S,W"
+per-file-ignores = """
+    tests/*:S101
+"""
