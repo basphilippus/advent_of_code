@@ -1,5 +1,7 @@
 from typing import List, Optional, Dict, Callable
 
+DEBUG: bool = False
+
 
 class FileSystemObject:
     def __init__(self, name: str):
@@ -99,6 +101,9 @@ def build_file_system(terminal_output: List[str]) -> Optional[Directory]:
 
 
 def visualize_file_system(file_system_object: Optional[FileSystemObject], indent: int = 0):
+    if not DEBUG:
+        return
+
     if file_system_object is None:
         return
 
