@@ -1,6 +1,8 @@
 from typing import List, Optional, Dict, Callable
+import logging
 
-DEBUG: bool = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class FileSystemObject:
@@ -39,7 +41,7 @@ class Directory(FileSystemObject):
 def get_sum_of_directory_sizes(terminal_output: List[str], maximum_size: int) -> int:
     root: Optional[Directory] = build_file_system(terminal_output)
 
-    print()
+    logger.debug('')
     visualize_file_system(root)
     directory_sizes: List[int] = []
     find_folders_below_size_limit(root, maximum_size, directory_sizes)
@@ -55,10 +57,10 @@ def get_smallest_directory_size_to_delete(terminal_output: List[str], maximum_si
     disk_in_use = root.get_size()
     free_space = total_disk_size - disk_in_use
     size_to_be_deleted = maximum_size - free_space
-    print()
-    print(f'Free space: {free_space}, we need {maximum_size}, so we need to delete {size_to_be_deleted}')
+    logger.debug('')
+    logger.debug(f'Free space: {free_space}, we need {maximum_size}, so we need to delete {size_to_be_deleted}')
 
-    print()
+    logger.debug('')
     visualize_file_system(root)
     directory_sizes: List[int] = []
     find_folders_above_size_limit(root, size_to_be_deleted, directory_sizes)
@@ -101,13 +103,13 @@ def build_file_system(terminal_output: List[str]) -> Optional[Directory]:
 
 
 def visualize_file_system(file_system_object: Optional[FileSystemObject], indent: int = 0):
-    if not DEBUG:
+    if logger.level != logging.DEBUG:
         return
 
     if file_system_object is None:
         return
 
-    print(f'{" " * indent}- {file_system_object}')
+    logger.debug(f'{" " * indent}- {file_system_object}')
     if isinstance(file_system_object, Directory):
         for child in sorted(file_system_object.children, key=lambda x: x.name):
             visualize_file_system(child, indent + 2)

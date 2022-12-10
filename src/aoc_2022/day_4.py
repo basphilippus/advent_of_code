@@ -1,7 +1,8 @@
 from typing import List
+import logging
 
-
-DEBUG = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def get_number_of_fully_contained_pairs(pair_input: List[str]) -> int:
@@ -23,8 +24,7 @@ def get_number_of_fully_contained_pairs(pair_input: List[str]) -> int:
         first_elf_numbers = [int(number) for number in first_elf.split('-')]
         second_elf_numbers = [int(number) for number in second_elf.split('-')]
 
-        if DEBUG:
-            print()
+        logger.debug('')
         visualize_pair(first_elf_numbers, max_number)
         visualize_pair(second_elf_numbers, max_number)
 
@@ -52,7 +52,7 @@ def get_number_of_overlapping_pairs(pair_input: List[str]) -> int:
 
 
 def visualize_pair(elf_numbers: List[int], max_number: int):
-    if not DEBUG:
+    if logger.level != logging.DEBUG:
         return
 
     pair_visualization = ''
@@ -62,4 +62,4 @@ def visualize_pair(elf_numbers: List[int], max_number: int):
         else:
             pair_visualization += f'{number}'.rjust(3, ' ')
     pair_visualization += f'  {elf_numbers[0]}-{elf_numbers[1]}'
-    print(pair_visualization)
+    logger.debug(pair_visualization)

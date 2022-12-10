@@ -1,7 +1,8 @@
 from typing import List, Dict
+import logging
 
-
-DEBUG = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def get_top_crates_for_each_stack(puzzle_input: List[str]) -> str:
@@ -75,10 +76,10 @@ def get_top_boxes(stacks: Dict[int, List[str]]) -> str:
 
 
 def visualize_stack(stacks: Dict[int, List[str]]):
-    if not DEBUG:
+    if logger.level == logging.DEBUG:
         return
 
-    print()
+    logger.debug('')
     max_boxes = max([len(stacks[stack]) for stack in stacks])
     for line in reversed(range(max_boxes)):
         line_string = ''
@@ -87,4 +88,4 @@ def visualize_stack(stacks: Dict[int, List[str]]):
                 line_string += f'[{stacks[stack][line]}] '
             else:
                 line_string += '    '
-        print(line_string)
+        logger.debug(line_string)

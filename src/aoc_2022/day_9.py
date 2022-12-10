@@ -1,6 +1,9 @@
 from typing import List, Tuple, Set, Dict
+import logging
 
-DEBUG: bool = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 MOVEMENT_MAP: Dict[str, Tuple[int, int]] = {
     "U": (0, 1),
@@ -26,8 +29,7 @@ def get_amount_of_visited_positions(movement_input: List[str], number_of_knots: 
             )
             rope[0] = current_position_head
 
-            if DEBUG:
-                print('Head moved')
+            logger.debug('Head moved')
             visualize_map(rope, visited_positions)
 
             for knot_index in range(1, number_of_knots):
@@ -54,13 +56,11 @@ def get_amount_of_visited_positions(movement_input: List[str], number_of_knots: 
                         current_knot[0] + tail_movement_vector[0],
                         current_knot[1] + tail_movement_vector[1]
                     )
-                    if DEBUG:
-                        print(f'Moving tail with {tail_movement_vector}')
+                    logger.debug(f'Moving tail with {tail_movement_vector}')
 
             visited_positions.add(rope[-1])
 
-            if DEBUG:
-                print('Tail moved')
+            logger.debug('Tail moved')
             visualize_map(rope, visited_positions)
 
     visualize_map(rope, visited_positions)
@@ -81,7 +81,7 @@ def is_touching_tail(current_position_head: Tuple[int, int],
 
 def visualize_map(rope: List[Tuple[int, int]],
                   visited_positions: Set[Tuple[int, int]]) -> None:
-    if not DEBUG:
+    if logger.level != logging.DEBUG:
         return
 
     min_x: int = min([position[0] for position in visited_positions.union(set(rope))])
@@ -89,22 +89,23 @@ def visualize_map(rope: List[Tuple[int, int]],
     max_x: int = max([position[0] for position in visited_positions] + [5])
     max_y: int = max([position[1] for position in visited_positions] + [4])
 
-    print()
+    logger.debug('')
     for y in range(max_y, min_y - 1, -1):
+        line: str = ''
         for x in range(min_x, max_x + 1):
             for knot_index, position in enumerate(rope):
                 if position == (x, y):
                     if knot_index == 0:
-                        print('H', end='')
+                        line += 'H'
                     else:
-                        print(knot_index, end='')
+                        line += str(knot_index)
                     break
             else:
                 if (x, y) == (0, 0):
-                    print('s', end='')
+                    line += 's'
                 elif (x, y) in visited_positions:
-                    print('X', end='')
+                    line += 'X'
                 else:
-                    print('.', end='')
-        print()
-    print()
+                    line += '.'
+        logger.debug(line)
+    logger.debug('')

@@ -1,15 +1,16 @@
 from collections import defaultdict
 from functools import reduce
 from typing import List, Dict, Tuple
+import logging
 
-
-DEBUG = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def get_amount_of_visible_trees(tree_height_input: List[str]) -> int:
     max_y, max_x, trees = build_tree_height_map(tree_height_input)
 
-    print()
+    logger.debug('')
     visualize_height(trees)
 
     tree_visibility: Dict[int, List[bool]] = defaultdict(list)
@@ -18,7 +19,7 @@ def get_amount_of_visible_trees(tree_height_input: List[str]) -> int:
             visibility = is_visible(y, x, max_y, max_x, trees)
             tree_visibility[y].insert(x, visibility)
 
-    print()
+    logger.debug('')
     visualize_visibility(tree_visibility)
 
     total_visible_trees: List[bool] = reduce(lambda total_trees, tree_line:
@@ -29,7 +30,7 @@ def get_amount_of_visible_trees(tree_height_input: List[str]) -> int:
 def get_best_scenic_score(tree_height_input: List[str]) -> int:
     max_y, max_x, trees = build_tree_height_map(tree_height_input)
 
-    print()
+    logger.debug('')
     visualize_height(trees)
 
     tree_scenic_scores: Dict[int, List[int]] = defaultdict(list)
@@ -38,7 +39,7 @@ def get_best_scenic_score(tree_height_input: List[str]) -> int:
             scenic_score = calculate_scenic_score(y, x, max_y, max_x, trees)
             tree_scenic_scores[y].insert(x, scenic_score)
 
-    print()
+    logger.debug('')
     visualize_height(tree_scenic_scores)
 
     all_scenic_scores: List[int] = reduce(lambda total_trees, tree_line:
@@ -128,18 +129,18 @@ def calculate_scenic_score(y: int, x: int, max_y: int, max_x: int, trees: Dict[i
 
 
 def visualize_height(tree_height: Dict[int, List[int]]):
-    if not DEBUG:
+    if logger.level != logging.DEBUG:
         return
 
     for _, height_line in tree_height.items():
         line = ''
         for height in height_line:
             line += f'{height}'.rjust(2, ' ')
-        print(line)
+        logger.debug(line)
 
 
 def visualize_visibility(tree_visibility: Dict[int, List[bool]]):
-    if not DEBUG:
+    if logger.level != logging.DEBUG:
         return
 
     for _, visibility_line in tree_visibility.items():
@@ -149,4 +150,4 @@ def visualize_visibility(tree_visibility: Dict[int, List[bool]]):
                 line += 'V'.rjust(2, ' ')
             else:
                 line += '.'.rjust(2, ' ')
-        print(line)
+        logger.debug(line)
