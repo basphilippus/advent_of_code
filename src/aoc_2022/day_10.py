@@ -112,9 +112,9 @@ class Program:
 
     def draw_pixel(self) -> None:
         if self.position in {self.variable - 1, self.variable, self.variable + 1}:
-            self.rows[self.row] += '#'
+            self.rows[self.row] += '█'
         else:
-            self.rows[self.row] += '.'
+            self.rows[self.row] += ' '
 
     def increment_position(self) -> None:
         self.position += 1

@@ -21,12 +21,12 @@ def test_example_part_1():
 def test_example_part_2():
     example_input = utils.get_example_input(__file__, 2)
     word_output = get_word_output(example_input)
-    expected_output = """##..##..##..##..##..##..##..##..##..##..
-###...###...###...###...###...###...###.
-####....####....####....####....####....
-#####.....#####.....#####.....#####.....
-######......######......######......####
-#######.......#######.......#######.....
+    expected_output = """██  ██  ██  ██  ██  ██  ██  ██  ██  ██  
+███   ███   ███   ███   ███   ███   ███ 
+████    ████    ████    ████    ████    
+█████     █████     █████     █████     
+██████      ██████      ██████      ████
+███████       ███████       ███████     
 """
     assert word_output == expected_output
 
@@ -44,7 +44,7 @@ def test_example_part_2():
 def test_puzzle_part_1():
     puzzle_input = utils.get_puzzle_input(__file__)
     sum_of_signal_strengths = get_sum_of_6_signal_strengths(puzzle_input)
-    print('Day 9 Puzzle Part 1:')
+    print('Day 10 Puzzle Part 1:')
     print(f'Sum of the 6 signal strengths: {sum_of_signal_strengths}')
     print()
 
