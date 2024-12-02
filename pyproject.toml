@@ -5,7 +5,7 @@ description = "Advent of Code"
 authors = ["Bas Philippus <bas.philippus@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.11,<4.0"
+python = "^3.12,<4.0"
 poetry = {version = "^1.2.2", optional = true}
 
 [tool.poetry.group.dev.dependencies]
