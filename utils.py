@@ -17,7 +17,7 @@ def get_example_input(year: int, day: int, example_number: Optional[int] = None)
         example_number_string = f'{example_number}'
 
     project_base_path = "/".join(__file__.split('/')[:-1])
-    with open(f'{project_base_path}/resources/{year}/day_{day}{example_number_string}_example.txt', 'r') as f:
+    with open(f'{project_base_path}/resources/{year}/day_{day}_example{example_number_string}.txt', 'r') as f:
         example_input = f.read()
     return example_input.split('\n')
 
