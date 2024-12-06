@@ -13,10 +13,10 @@ def test_example_part_2(result: int):
 
 
 @utils.puzzle(2024, 4, 1, get_amount_of_xmas_occurrences)
-def test_puzzle_part_1(result: int):
+def test_puzzle_part_1(_: int):
     pass
 
 
 @utils.puzzle(2024, 4, 2, get_amount_of_xmas_shapes)
-def test_puzzle_part_2(result: int):
+def test_puzzle_part_2(_: int):
     pass

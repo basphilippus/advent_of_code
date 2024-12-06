@@ -14,10 +14,10 @@ def test_example_part_2(result: int):
 
 
 @utils.puzzle(2024, 3, 1, get_result_of_valid_multiplications)
-def test_puzzle_part_1(result: int):
+def test_puzzle_part_1(_: int):
     pass
 
 
 @utils.puzzle(2024, 3, 2, get_result_of_valid_multiplications_include_disabled_memory)
-def test_puzzle_part_2(result: int):
+def test_puzzle_part_2(_: int):
     pass
