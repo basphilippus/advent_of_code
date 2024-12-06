@@ -26,6 +26,7 @@ def get_most_pressure_released(input_data: list[str], minutes: int) -> int:
     max_pressure_released = traverse_path(valves, start_valve, 0, parent_path, minutes)
     return max_pressure_released
 
+
 def traverse_path(valves: dict, start_valve: dict, max_pressure_released: int, parent_path: list, minutes: int) -> int:
     for tunnel in start_valve['tunnels']:
         next_valve = valves[tunnel]

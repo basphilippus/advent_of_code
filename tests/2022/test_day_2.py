@@ -2,35 +2,21 @@ import utils
 from aoc_2022.day_2 import play_rock_paper_scissors, get_correct_rock_paper_scissors_score
 
 
-def test_example_part_1():
-    example_input = utils.get_example_input(__file__)
-    score = play_rock_paper_scissors(example_input)
-    print('Day 2 Example Part 1:')
-    print(f'Rock Paper Scissors score: {score}')
-    print()
-    assert score == 15
+@utils.example(2022, 2, 1, play_rock_paper_scissors)
+def test_example_part_1(result: int):
+    assert result == 15
 
 
-def test_example_part_2():
-    example_input = utils.get_example_input(__file__)
-    score = get_correct_rock_paper_scissors_score(example_input)
-    print('Day 2 Example Part 2:')
-    print(f'Rock Paper Scissors score: {score}')
-    print()
-    assert score == 12
+@utils.example(2022, 2, 2, get_correct_rock_paper_scissors_score)
+def test_example_part_2(result: int):
+    assert result == 12
 
 
-def test_puzzle_part_1():
-    puzzle_input = utils.get_puzzle_input(__file__)
-    score = play_rock_paper_scissors(puzzle_input)
-    print('Day 2 Puzzle Part 1:')
-    print(f'Rock Paper Scissors score: {score}')
-    print()
+@utils.puzzle(2022, 2, 1, play_rock_paper_scissors)
+def test_puzzle_part_1(_: int):
+    pass
 
 
-def test_puzzle_part_2():
-    puzzle_input = utils.get_puzzle_input(__file__)
-    score = get_correct_rock_paper_scissors_score(puzzle_input)
-    print('Day 2 Puzzle Part 2:')
-    print(f'Rock Paper Scissors score: {score}')
-    print()
+@utils.puzzle(2022, 2, 2, get_correct_rock_paper_scissors_score)
+def test_puzzle_part_2(_: int):
+    pass

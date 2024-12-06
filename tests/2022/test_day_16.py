@@ -19,6 +19,7 @@ def test_example_part_2():
     print()
     assert tuning_frequency == 56000011
 
+
 def test_puzzle_part_1():
     puzzle_input = utils.get_puzzle_input(__file__)
     most_pressure_released = get_most_pressure_released(puzzle_input, minutes=30)
@@ -33,3 +34,23 @@ def test_puzzle_part_2():
     print('Day 16 Puzzle Part 2:')
     print(f'Tuning frequency: {tuning_frequency}')
     print()
+
+
+@utils.example(2022, 16, 1, get_most_pressure_released, minutes=30)
+def test_example_part_1(result: int):
+    assert result == 1651
+
+
+# @utils.example(2022, 16, 2, get_tuning_frequency, max_range=20)
+# def test_example_part_2(result: int):
+#     assert result == 56000011
+
+
+@utils.puzzle(2022, 16, 1, get_most_pressure_released, minutes=30)
+def test_puzzle_part_1(_: int):
+    pass
+
+
+# @utils.puzzle(2022, 16, 2, get_tuning_frequency, max_range=4000000)
+# def test_puzzle_part_2(_: int):
+#     pass

@@ -33,7 +33,11 @@ def example(year: int,
             example_input = get_example_input(year, day, example_number)
             result = implementation(example_input, **implementation_kwargs)
             print(f'Day {day} Example Part {part}:')
-            print(f'Result: {result}')
+            if isinstance(result, str):
+                print("Result:")
+                print(result)
+            else:
+                print(f'Result: {result}')
             return func(result)
         return wrapper
 
@@ -50,7 +54,11 @@ def puzzle(year: int,
             example_input = get_puzzle_input(year, day)
             result = implementation(example_input, **implementation_kwargs)
             print(f'Day {day} Example Part {part}:')
-            print(f'Result: {result}')
+            if isinstance(result, str):
+                print("Result:")
+                print(result)
+            else:
+                print(f'Result: {result}')
             return func(result)
 
         return wrapper

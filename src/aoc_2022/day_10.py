@@ -128,6 +128,7 @@ class Program:
               f'{"".join(["." * (self.resolution[0] - self.variable - 3)])}')
         logger.debug('')
 
+
 def get_sum_of_6_signal_strengths(instructions: List[str]) -> int:
     program = Program(instructions)
     program.get_signal_strengths(cycles_to_watch=[20, 60, 100, 140, 180, 220])
